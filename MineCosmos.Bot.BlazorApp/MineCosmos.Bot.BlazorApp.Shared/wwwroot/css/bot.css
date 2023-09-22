@@ -1,0 +1,50 @@
+﻿* {
+    font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei;
+}
+
+.layout-title {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    text-align: left;
+    line-height: 4em;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.tabs-nav-wrap {
+    box-shadow: 3px 2px 14px #ccc;
+}
+
+.tabs .tabs-body {
+    background: #f3f3f3;
+    padding: 2.1rem 1.04rem;
+}
+
+.layout-user .layout-title {
+    text-align: center;
+}
+
+.layout-banner {
+    background: #363636 !important;
+}
+
+.tabs.tabs-border-card > .tabs-header {
+    background-color: transparent;
+}
+
+    .tabs .tabs-item-fix, .tabs.tabs-border-card > .tabs-header .tabs-item.activ, .tabs.tabs-border-card > .tabs-header .tabs-item.active,
+    .tabs.tabs-border-card > .tabs-header .tabs-item {
+        border: none;
+    }
+
+        .tabs.tabs-border-card > .tabs-header .tabs-item.active {
+            border-bottom:2px solid #363636;
+        }
+
+
+
+        .tabs {
+            --bb-tabs-border: none;
+            --bb-tabs-border-card-header-bg-color: #f5f7fa;
+        }

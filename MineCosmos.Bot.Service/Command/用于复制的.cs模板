@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
+using System.Threading.Tasks;
+using Kook;
+using Kook.WebSocket;
+using MineCosmos.Bot.Common;
+using MineCosmos.Bot.Service.Bot;
+using Newtonsoft.Json;
+
+namespace MineCosmos.Bot;
+
+public class XXXCommand : BaseCommand, ICommand
+{
+
+    private readonly IServerManagerService? _serverManagerService;
+
+    public XXXCommand(CommandData data)
+    {
+        _socketMessage = data.SocketMessage;
+        _serverManagerService = data.ServerManager;
+        _socketMessage = data.SocketMessage;
+        _socketGuildUser = data.SocketGuildUser;
+    }
+
+    public async Task<CommandExcuteResultModel> Execute()
+    {
+
+        return Success();
+    }
+
+}
+

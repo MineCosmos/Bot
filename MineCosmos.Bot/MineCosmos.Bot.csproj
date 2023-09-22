@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<PublishSingleFile>true</PublishSingleFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PublishTrimmed>true</PublishTrimmed>
+		<DebugType>embedded</DebugType>		
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Interactive\GroupFunction.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="appsettings.Development.temp.json~RFc60d2a0.TMP" />
+	  <None Remove="Helper\KookCommand\Command\BaseCommand.cs~RF75ff253c.TMP" />
+	  <None Remove="Helper\KookCommand\Command\用于复制的.cs模板" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Serilog.Sinks.Email" Version="2.4.0" />
+		<PackageReference Include="Sora" Version="1.3.1" />
+		<PackageReference Include="Spectre.Console" Version="0.47.1-preview.0.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\MineCosmos.Bot.Entity\MineCosmos.Bot.Entity.csproj" />
+		<ProjectReference Include="..\MineCosmos.Bot.Extensions\MineCosmos.Bot.Extensions.csproj" />
+		<ProjectReference Include="..\MineCosmos.Common\MineCosmos.Common.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="appsettings.agileconfig.temp.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="appsettings.Development.temp.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="appsettings.agileconfig.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="appsettings.Development.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="appsettings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="LXGWWenKaiGBScreenR.ttf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Helper\KookCommand\Command\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\MineCosmos.Bot.BlazorApp\MineCosmos.Bot.BlazorApp.Shared\Components\Select.razor" Link="Select.razor" />
+	</ItemGroup>
+
+</Project>

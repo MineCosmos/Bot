@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="appsettings.agileconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.agileconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MineCosmos.Bot.BlazorApp.Shared\MineCosmos.Bot.BlazorApp.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AgileConfig.Client" Version="1.7.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MineCosmos.Bot.Entity\MineCosmos.Bot.Entity.csproj" />
+    <ProjectReference Include="..\MineCosmos.Bot.Service\MineCosmos.Bot.Service.csproj" />
+    <ProjectReference Include="..\MineCosmos.Common\MineCosmos.Common.csproj" />
+  </ItemGroup>
+
+</Project>

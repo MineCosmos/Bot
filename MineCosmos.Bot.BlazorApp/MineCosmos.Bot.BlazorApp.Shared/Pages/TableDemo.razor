@@ -1,0 +1,121 @@
+﻿@page "/table"
+@using MineCosmos.Bot.BlazorApp.Shared.Base;
+@using MineCosmos.Bot.Entity;
+@inherits BotComponentBase<MinecraftServerEntity>
+@attribute [TabItemOption(Text = "Table")]
+<PageTitle>Table</PageTitle>
+
+<h1> 😥 服务器列表</h1>
+
+<Table TItem="MinecraftServerEntity"
+       @bind-SelectedRows="SelectedItems"
+       Height="600"
+       IsPagination="true"
+       PageItemsSource="@PageItemsSource"
+       OnSaveAsync="OnSaveAsync"
+       OnDeleteAsync="OnDeleteAsync"
+       RenderMode="TableRenderMode.Table"
+       IsFixedHeader="true"
+       class="table-users"
+       IsStriped="true"
+       IsBordered="true"
+       ShowToolbar="true"
+       ShowDefaultButtons="true"
+       ShowDeleteButton = "true"
+       ShowPageInfo = "true"
+       ShowAddButton = "true"
+       ShowSearchButton = "true"
+       ShowExtendButtons = "true"
+       ShowExtendEditButton = "true"
+       ShowExtendDeleteButton = "true"
+       ShowLoadingInFirstRender = "true"
+       ShowSkeleton = "true"
+       AddModalTitle = "🙄 新增服务器"
+       EditModalTitle="🤩 编辑服务器"
+       ShowEmpty = "true"
+       AllowDragColumn = "true"
+       IsMultipleSelect="true"
+       OnQueryAsync="OnQueryAsync">
+    <TableColumns>
+        <TableColumn @bind-Field="@context.Id" Align="Alignment.Center" Text="执行指令">
+            <Template Context="v">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
+                    <PulseButton Icon="fa-solid fas fa-code" Color="Color.Primary"></PulseButton></div>
+            </Template>
+        </TableColumn>
+        <TableColumn @bind-Field="@context.Id" />
+        <TableColumn @bind-Field="@context.ServerName" />
+        <TableColumn @bind-Field="@context.ServerIp" />
+        <TableColumn @bind-Field="@context.ServerPort" />
+        <TableColumn @bind-Field="@context.RconAddress" />
+        <TableColumn @bind-Field="@context.RconPort" />
+        <TableColumn @bind-Field="@context.RconPwd" />
+        <TableColumn @bind-Field="@context.KookGuild" />
+        <TableColumn @bind-Field="@context.KookChannelId" />
+        <TableColumn @bind-Field="@context.Remark" />
+    </TableColumns>
+
+    <EditTemplate>
+        <div class="row g-3 form-inline">
+            <div class="col-12 col-sm-12">
+                <FloatingLabel DisplayText="服务器名称，可以重名" @bind-Value="@context.ServerName" TValue="string" IsSelectAllTextOnFocus="true" />
+                @*<BootstrapInput @bind-Value="@context.ServerName" placeholder="一个名称，可以重名" maxlength="50" />*@
+            </div>
+            <div class="col-12 col-sm-6">
+                <IpAddress @bind-Value="@context.ServerIp" placeholder="服务器IP" maxlength="50" />
+            </div>
+            <div class="col-12 col-sm-6">              
+                <BootstrapInput @bind-Value="@context.ServerPort" placeholder="不可为空" maxlength="50" />
+            </div>
+            <div class="col-12 col-sm-4">
+                <BootstrapInput @bind-Value="@context.RconAddress" placeholder="不可为空" maxlength="50" />
+            </div>
+            <div class="col-12 col-sm-4">
+                <BootstrapInput @bind-Value="@context.RconPort" placeholder="Rcon端口" maxlength="50" />
+            </div>
+            <div class="col-12 col-sm-4">
+                <BootstrapInput @bind-Value="@context.RconPwd" placeholder="密码" maxlength="50" />
+            </div>
+            <div class="col-12 col-sm-6">
+                <BootstrapInput @bind-Value="@context.KookGuild" placeholder="/app/channels/[服务器ID]/频道ID" maxlength="50" />
+            </div>
+            <div class="col-12 col-sm-6">
+                <BootstrapInput @bind-Value="@context.KookChannelId" placeholder="/app/channels/服务器ID/[频道ID]" maxlength="50" />
+            </div>        
+        </div>
+    </EditTemplate>
+</Table>
+
+
+<Drawer Placement="@DrawerAlign" IsOpen="@DrawerIsOpen" IsBackdrop="true">
+    <div class="d-flex justify-content-center align-items-center flex-column" style="height: 290px;">
+        <Card>
+            <HeaderTemplate>
+                Featured
+            </HeaderTemplate>
+            <BodyTemplate>
+                
+                <div class="row g-3">
+                    <div class="col-12 col-sm-6">
+                        <BootstrapInputGroup>
+                            <MinecraftCodeDropDown McServerId="ServerId" />
+                        </BootstrapInputGroup>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <BootstrapInputGroup>
+                            <BootstrapInput @bind-Value="@Comand" />
+                            <Button Icon="fa-solid fa-magnifying-glass"></Button>
+                        </BootstrapInputGroup>
+                    </div>
+                </div>
+            
+            </BodyTemplate>
+            <FooterTemplate>
+                2 days ago
+            </FooterTemplate>
+        </Card>
+    </div>
+</Drawer>
+
+
+

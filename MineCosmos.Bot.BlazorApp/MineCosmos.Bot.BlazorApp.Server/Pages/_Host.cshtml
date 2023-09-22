@@ -1,0 +1,9 @@
+﻿@page "/"
+@namespace MineCosmos.Bot.BlazorApp.Server.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using MineCosmos.Bot.BlazorApp.Shared
+@{
+    Layout = "_Layout";
+}
+
+<component type="typeof(App)" render-mode="ServerPrerendered" />

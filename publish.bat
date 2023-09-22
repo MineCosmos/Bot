@@ -1,0 +1,1 @@
+dotnet publish MineCosmos.Bot -r win-x64 -c Release -p:DebugType=None
