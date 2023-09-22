@@ -9,7 +9,7 @@
 	  <Compile Remove="Kook\KookService.cs" />
 	</ItemGroup>
 	<ItemGroup>
-	  <None Remove="Bot\CommandManager\ICommandManagerService.cs~RF4b10ef2.TMP" />
+	  <None Remove="CommandManager\ICommandManagerService.cs~RF4b10ef2.TMP" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="CoreRCON" Version="5.0.5" />

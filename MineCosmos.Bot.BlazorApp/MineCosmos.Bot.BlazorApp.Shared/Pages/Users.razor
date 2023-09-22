@@ -1,4 +1,5 @@
 ﻿@page "/users"
+@inherits BotComponentBase<PlayerInfoEntity>
 @attribute [TabItemOption(Text = "花名册")]
 <PageTitle>花名册</PageTitle>
 
@@ -6,37 +7,54 @@
 
 <p>只读数据 - 更改每页显示数量体验固定表头功能</p>
 
-<Table TItem="Foo" IsPagination="true" PageItemsSource="@PageItemsSource" RenderMode="TableRenderMode.Table" IsFixedHeader="true" class="table-users"
-        IsStriped="true" IsBordered="true" OnQueryAsync="OnQueryAsync">
+@* OnSaveAsync="OnSaveAsync"
+       OnDeleteAsync="OnDeleteAsync"*@
+<Table class="table-users" TItem="PlayerInfoEntity"
+       @bind-SelectedRows="SelectedItems"
+       Height="600"
+       IsPagination="true"
+       PageItemsSource="@PageItemsSource"
+       RenderMode="TableRenderMode.Table"
+       IsFixedHeader="true"
+       IsStriped="true"
+       IsBordered="true"
+       ShowToolbar="true"
+       ShowDefaultButtons="true"
+       ShowDeleteButton="true"
+       ShowPageInfo="true"
+       ShowAddButton="true"
+       ShowSearchButton="true"
+       ShowExtendButtons="true"
+       ShowExtendEditButton="true"
+       ShowExtendDeleteButton="true"
+       ShowLoadingInFirstRender="true"
+       ShowSkeleton="true"
+       AddModalTitle="🙄 添加玩家"
+       EditModalTitle="🤩 编辑玩家"
+       ShowEmpty="true"
+       AllowDragColumn="true"
+       IsMultipleSelect="true"
+       OnQueryAsync="OnQueryAsync">
+
     <TableColumns>
         <TableColumn @bind-Field="@context.Name" Width="260">
             <Template Context="value">
                 <div class="d-flex">
                     @{
-                        var row = (Foo)value.Row;
+                        var row = (PlayerInfoEntity)value.Row;
                     }
                     <div>
-                        <img src="@GetAvatarUrl(row.Id)" />
+                        <img src="@row.Avatar" />
                     </div>
                     <div class="ps-2">
                         <div>@value.Value</div>
-                        <div class="user-demo-address">@row.Address</div>
+                        <div class="user-demo-address">@row.Uuid</div>
                     </div>
                 </div>
             </Template>
         </TableColumn>
-        <TableColumn @bind-Field="@context.Address" />
-        <TableColumn @bind-Field="@context.Education" Align="Alignment.Center" Width="80" />
-        <TableColumn @bind-Field="@context.Count" Width="160">
-            <Template Context="value">
-                <div class="w-100">
-                    <div>@value.Value %</div>
-                    <div>
-                        <Progress Value="@value.Value" Color="@GetProgressColor(value.Value)"></Progress>
-                    </div>
-                </div>
-            </Template>
-        </TableColumn>
-        <TableColumn @bind-Field="@context.Complete" Align="Alignment.Center" Width="80" />
+        <TableColumn @bind-Field="@context.KookUserId" Width="100" />
+        <TableColumn @bind-Field="@context.SignInCount" Width="100" />
+        <TableColumn @bind-Field="@context.EmeraldVal" Width="100" />
     </TableColumns>
 </Table>

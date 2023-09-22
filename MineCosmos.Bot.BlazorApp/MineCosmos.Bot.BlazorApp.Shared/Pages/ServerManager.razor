@@ -1,9 +1,9 @@
-﻿@page "/table"
+﻿@page "/servermanage"
 @using MineCosmos.Bot.BlazorApp.Shared.Base;
 @using MineCosmos.Bot.Entity;
 @inherits BotComponentBase<MinecraftServerEntity>
-@attribute [TabItemOption(Text = "Table")]
-<PageTitle>Table</PageTitle>
+@attribute [TabItemOption(Text = "服务器管理")]
+<PageTitle>Minecraft · 服务器管理</PageTitle>
 
 <h1> 😥 服务器列表</h1>
 
@@ -40,7 +40,9 @@
         <TableColumn @bind-Field="@context.Id" Align="Alignment.Center" Text="执行指令">
             <Template Context="v">
                 <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
-                    <PulseButton Icon="fa-solid fas fa-code" Color="Color.Primary"></PulseButton></div>
+                    <PulseButton @onclick="@(e => ShowSendComandClick(v.Row.Id))"
+                        Icon="fa-solid fas fa-code" Color="Color.Primary"></PulseButton>
+                </div>
             </Template>
         </TableColumn>
         <TableColumn @bind-Field="@context.Id" />
@@ -87,7 +89,7 @@
 </Table>
 
 
-<Drawer Placement="@DrawerAlign" IsOpen="@DrawerIsOpen" IsBackdrop="true">
+<Drawer Placement="Placement.Bottom"  IsOpen="@DrawerIsOpen" IsBackdrop="true">
     <div class="d-flex justify-content-center align-items-center flex-column" style="height: 290px;">
         <Card>
             <HeaderTemplate>
@@ -98,13 +100,13 @@
                 <div class="row g-3">
                     <div class="col-12 col-sm-6">
                         <BootstrapInputGroup>
-                            <MinecraftCodeDropDown McServerId="ServerId" />
+                            <ComandDropDown McServerId="ServerId" OnSelectItemChanged="SlectServerChange" />
                         </BootstrapInputGroup>
                     </div>
                     <div class="col-12 col-sm-6">
                         <BootstrapInputGroup>
                             <BootstrapInput @bind-Value="@Comand" />
-                            <Button Icon="fa-solid fa-magnifying-glass"></Button>
+                            <Button @onclick="SendComandToServer" Icon="fa-solid fa-magnifying-glass"></Button>
                         </BootstrapInputGroup>
                     </div>
                 </div>

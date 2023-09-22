@@ -22,6 +22,11 @@ public class ReqPageDto
     /// 每页大小
     /// </summary>
     public int PageSize { get; set; }
+
+    /// <summary>
+    /// 用于名字等信息检索
+    /// </summary>
+    public string Key { get; set; } = "";
 }
 
 /// <summary>

@@ -50,6 +50,7 @@ namespace MineCosmos.Bot.Extensions
                   services.TryAddSingleton<ICommonService, CommonService>();
                   services.TryAddSingleton<IServerManagerService, ServerManagerService>();
                   services.TryAddSingleton<ICommandManagerService, CommandManagerService>();
+                  services.TryAddSingleton<IPlayerService, PlayerService>();
 
               });
 

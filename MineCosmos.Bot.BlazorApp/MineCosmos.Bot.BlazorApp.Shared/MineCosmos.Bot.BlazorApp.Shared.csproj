@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Components\MinecraftCodeDropDown.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="BootstrapBlazor" Version="7.*" />
     <PackageReference Include="BootstrapBlazor.Chart" Version="7.6.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.7.0" />
@@ -27,18 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\MineCosmos.Bot.Extensions\MineCosmos.Bot.Extensions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Components\MinecraftCodeDropDown.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Components\MinecraftCodeDropDown.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Components\MinecraftCodeDropDown.razor" />
   </ItemGroup>
 
 </Project>

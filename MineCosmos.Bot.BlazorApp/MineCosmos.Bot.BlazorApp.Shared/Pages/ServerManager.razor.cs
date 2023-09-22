@@ -10,6 +10,7 @@ using MineCosmos.Bot.BlazorApp.Shared.Base;
 using MineCosmos.Bot.BlazorApp.Shared.Data;
 using MineCosmos.Bot.Entity;
 using MineCosmos.Bot.Entity.Dto;
+using MineCosmos.Bot.Service;
 using MineCosmos.Bot.Service.Bot;
 
 namespace MineCosmos.Bot.BlazorApp.Shared.Pages
@@ -17,11 +18,13 @@ namespace MineCosmos.Bot.BlazorApp.Shared.Pages
     /// <summary>
     /// 
     /// </summary>
-    public partial class TableDemo : BotComponentBase<MinecraftServerEntity>
+    public partial class ServerManager : BotComponentBase<MinecraftServerEntity>
     {
-        [Inject]
-        [NotNull]
-        private IServerManagerService? serverManagerService { get; set; }
+
+        [Inject, NotNull]
+        private IServerManagerService? serverManagerService { get; set; }       
+        [Inject, NotNull]
+        private ToastService? ToastService { get; set; }
 
         private int ServerId { get; set; } = 100;
         private string Comand { get; set; } = "/list";
@@ -32,7 +35,30 @@ namespace MineCosmos.Bot.BlazorApp.Shared.Pages
         protected override async Task OnInitializedAsync()
         {
             base.OnInitialized();
+            await Task.CompletedTask;
         }
+
+        private void ShowSendComandClick(int clickServerId)
+        {
+            this.ServerId = clickServerId;
+            this.DrawerIsOpen = true;
+        }
+
+        private async Task SendComandToServer()
+        {
+            if (!Comand.StartsWith('/')) Comand = $"/{Comand}";
+            string comandExcuteResult = await serverManagerService.SendAsync(ServerId, Comand);
+
+            await ToastService.Show(new ToastOption()
+            {
+                Category = ToastCategory.Success,
+                Title = "Successfully saved",
+                Content = "Save data successfully, automatically close after 4 seconds"
+            });
+
+        }
+
+        private void SlectServerChange(int id) => ServerId = id;
 
         /// <summary>
         /// 查询
@@ -60,8 +86,8 @@ namespace MineCosmos.Bot.BlazorApp.Shared.Pages
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        private async Task<bool> OnDeleteAsync(IEnumerable<MinecraftServerEntity> model) => await serverManagerService.Remove<MinecraftServerEntity>(a => model.Select(a=>a.Id).Contains(a.Id));
+        private async Task<bool> OnDeleteAsync(IEnumerable<MinecraftServerEntity> model) => await serverManagerService.Remove<MinecraftServerEntity>(a => model.Select(a => a.Id).Contains(a.Id));
 
-     
+
     }
 }
