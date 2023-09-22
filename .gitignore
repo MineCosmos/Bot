@@ -359,3 +359,5 @@ Sql/
 /MineCosmos.Bot/appsettings.agileconfig.json
 /MineCosmos.Bot.BlazorApp/MineCosmos.Bot.BlazorApp.Server/appsettings.agileconfig.json
 /MineCosmos.Bot/appsettings.Development.json
+/MineCosmos.Bot/appsettings.agileconfig.json
+/MineCosmos.Bot/appsettings.Development.json
