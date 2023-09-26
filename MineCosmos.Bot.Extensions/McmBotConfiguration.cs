@@ -51,7 +51,6 @@ namespace MineCosmos.Bot.Extensions
                   services.TryAddSingleton<IServerManagerService, ServerManagerService>();
                   services.TryAddSingleton<ICommandManagerService, CommandManagerService>();
                   services.TryAddSingleton<IPlayerService, PlayerService>();
-
               });
 
             if (AppSettings.app(new string[] { "AgileConfig", "Enable" }).ObjToBool())
@@ -75,9 +74,9 @@ namespace MineCosmos.Bot.Extensions
             return hostBuilder;
         }
 
-        public static void AddKook(this IServiceCollection hostBuilder)
+        public static void AddBotService(this IServiceCollection hostBuilder)
         {
-            hostBuilder.TryAddSingleton<IServiceCentern, ServiceCentern>();
+            hostBuilder.TryAddSingleton<IBotService, KookBotService>();
         }
 
     }

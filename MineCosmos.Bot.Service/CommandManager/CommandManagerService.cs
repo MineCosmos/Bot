@@ -36,14 +36,13 @@ public class CommandManagerService : BaseService, ICommandManagerService
     /// </summary>
     /// <param name="model"></param>
     /// <returns></returns>
-    public async Task<(bool isSuccess, string errorMsg)> SaveCommandGroup(CommandGroupEntity model)
+    public async Task<bool> SaveCommandGroup(CommandGroupEntity model)
     {
         bool hasVal = await AnyAsync<CommandGroupEntity>(
             a => a.Name == model.Name && (model.Id < 0 || a.Id != model.Id));
-        if (hasVal) return (false, "已存在相同名称的命令组");
-
-        bool result = await Save<CommandGroupEntity>(model);
-        return (result, string.Empty);
+        if (hasVal) throw new Exception("已存在相同名称的命令组");
+        return await Save<CommandGroupEntity>(model);
+      
     }
 
     /// <summary>

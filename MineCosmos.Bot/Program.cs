@@ -33,7 +33,7 @@ IHost host = Host.CreateDefaultBuilder(args)
           //同理，blazor那边不启动kook
           if (AppSettings.app(new string[] { "Kook", "Enable" }).ObjToBool())
           {
-              services.AddKook();
+              services.AddBotService();
           }
 
       })
@@ -49,7 +49,7 @@ await regService?.RegisterAsync();
 
 if (AppSettings.app(new string[] { "Kook", "Enable" }).ObjToBool())
 {
-    await host.Services.GetService<IServiceCentern>().StartKookNet();
+    await host.Services.GetService<IBotService>().StartBot();
 }
 
 //var server = await serverManagerService!.AppendServer(new MinecraftServerEntity()

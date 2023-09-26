@@ -17,7 +17,7 @@ namespace MineCosmos.Bot.Service;
     /// <summary>
     /// 公共指令
     /// </summary>
-    public class BaseCommand
+    public class BaseCommand:BaseService
     {
         public BaseCommand() { }
 
@@ -39,28 +39,17 @@ namespace MineCosmos.Bot.Service;
         };
 
 
-        #region 常用DB操作
+     
 
-        #region 幼儿园小朋友都知道的简单业务仓储
+        #region 业务仓储
 
-        public async Task<PlayerInfoEntity> GetPlayerInfoByKookIdAsync(string kookId) => await Db.Queryable<PlayerInfoEntity>().FirstAsync(a => a.KookUserId == kookId);
+        public async Task<PlayerInfoEntity> GetPlayerInfoByKookIdAsync(string kookId) => await GetAsync< PlayerInfoEntity>(a => a.KookUserId == kookId);
 
-        public async Task<bool> AnyPlayerInfoByKookId(string kookId) => await Db.Queryable<PlayerInfoEntity>().AnyAsync(a => a.KookUserId == kookId);
-
-        #endregion
-
-        #region 学前班的小朋友都知道的orm封装
-
-        public async Task<bool> AnyAsync<TEntity>(Expression<Func<TEntity, bool>> whereExpression) where TEntity : class, new()
-          => await Db.Queryable<TEntity>().AnyAsync(whereExpression);
-
-        public async Task<TEntity> GetAsync<TEntity>(Expression<Func<TEntity, bool>> whereExpression) where TEntity : class, new()
-         => await Db.Queryable<TEntity>().FirstAsync(whereExpression);
+        public async Task<bool> AnyPlayerInfoByKookId(string kookId) => await AnyAsync<PlayerInfoEntity>(a => a.KookUserId == kookId);
 
         #endregion
 
 
-        #endregion
 
         /// <summary>
         /// 当前MC服务器，子类构造中赋值

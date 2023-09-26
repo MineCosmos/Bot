@@ -40,7 +40,7 @@ namespace MineCosmos.Bot.BlazorApp.Shared.Shared
         {
             new MenuItem() { Text = "首页", Icon = "fa-solid fa-fw fa-home", Url = "/" , Match = NavLinkMatch.All},
               new MenuItem() { Text = "用户管理", Icon = "fa-solid fas fa-users-viewfinder", Url = "users" },
-            new MenuItem() { Text = "指令管理", Icon = "fa-solid fas fa-server", Url = "/comandmanage" },            
+            new MenuItem() { Text = "指令管理", Icon = "fa-solid fas fa-server", Url = "/comand" },            
             new MenuItem() { Text = "服务器管理", Icon = "fa-solid fas fa-code", Url = "servermanage" },
             new MenuItem() { Text = "数据设置", Icon = "fa-solid fa-fw fa-database", Url = "fetchdata" }          
         };

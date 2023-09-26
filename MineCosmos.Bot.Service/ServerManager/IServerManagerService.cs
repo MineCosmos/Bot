@@ -11,6 +11,13 @@ namespace MineCosmos.Bot.Service;
 public interface IServerManagerService: IBaseService
 {
     /// <summary>
+    /// 获取服务器列表
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    Task<List<MinecraftServerEntity>> GetListServer(string name = "");
+
+    /// <summary>
     /// 获取服务器分页列表
     /// </summary>
     /// <param name="pageNum"></param>

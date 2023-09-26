@@ -5,7 +5,7 @@
 
 <h1>花名册</h1>
 
-<p>只读数据 - 更改每页显示数量体验固定表头功能</p>
+<p>😳😳😳😳😳😳</p>
 
 @* OnSaveAsync="OnSaveAsync"
        OnDeleteAsync="OnDeleteAsync"*@
@@ -14,6 +14,7 @@
        Height="600"
        IsPagination="true"
        PageItemsSource="@PageItemsSource"
+       OnSaveAsync="OnSaveAsync"
        RenderMode="TableRenderMode.Table"
        IsFixedHeader="true"
        IsStriped="true"
@@ -57,4 +58,38 @@
         <TableColumn @bind-Field="@context.SignInCount" Width="100" />
         <TableColumn @bind-Field="@context.EmeraldVal" Width="100" />
     </TableColumns>
+
+    <EditTemplate>
+        <div class="row g-3">
+            <div class="col-sm-6">
+                <FloatingLabel DisplayText="玩家正版ID" @bind-Value="@context.Name" TValue="string" IsSelectAllTextOnFocus="true" />
+            </div>
+            <div class="col-sm-6">
+                <FloatingLabel DisplayText="UUID" @bind-Value="@context.Uuid" TValue="string" IsSelectAllTextOnFocus="true" />
+            </div>
+            <div class="col-6">
+                <AvatarUpload @bind-Value="@context.Avatar" TValue="string" Accept="image/*" IsSingle="true" ShowProgress="true" IsCircle="true" OnChange="@SaveToFile"
+                              OnDelete="@(fileName => Task.FromResult(true))"></AvatarUpload>
+            </div>
+            <div class="col-sm-6">
+                <FloatingLabel DisplayText="KOOK用户ID" IsDisabled="true" @bind-Value="@context.KookUserId" TValue="string" IsSelectAllTextOnFocus="true" />
+            </div>
+
+            <div class="col-sm-12">
+                <Select IsVirtualize="true"
+                        ShowLabel="true"
+                        @bind-Value="@context.ServerId"
+                        DisplayText="Minecraft服务器"
+                        OnQueryAsync="ServerDrawDropOnQueryAsync"
+                        ShowSearch="true"></Select>
+            </div>
+
+            <div class="col-sm-6">
+                <FloatingLabel DisplayText="签到次数" @bind-Value="@context.SignInCount" TValue="int" IsSelectAllTextOnFocus="true" />
+            </div>
+            <div class="col-sm-6">
+                <FloatingLabel DisplayText="绿宝石数量" @bind-Value="context.EmeraldVal" TValue="int" IsSelectAllTextOnFocus="true" />
+            </div>
+        </div>
+    </EditTemplate>
 </Table>

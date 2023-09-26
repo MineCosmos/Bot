@@ -1,0 +1,92 @@
+﻿@page "/comand"
+@using MineCosmos.Bot.BlazorApp.Shared.Base;
+@using MineCosmos.Bot.Entity;
+@inherits BotComponentBase<CommandGroupEntity>
+@attribute [TabItemOption(Text = "指令管理")]
+<PageTitle>Minecraft · 指令管理</PageTitle>
+
+
+<Table class="table-users" TItem="CommandGroupEntity"
+       @bind-SelectedRows="SelectedItems"
+       Height="600"
+       IsPagination="true"
+       PageItemsSource="@PageItemsSource"
+       OnSaveAsync="OnSaveAsync"
+       RenderMode="TableRenderMode.Table"
+       IsFixedHeader="true"
+       IsStriped="true"
+       IsBordered="true"
+       ShowToolbar="true"
+       ShowDefaultButtons="true"
+       ShowDeleteButton="true"
+       ShowPageInfo="true"
+       ShowAddButton="true"
+       ShowSearchButton="true"
+       ShowExtendButtons="true"
+       ShowExtendEditButton="true"
+       ShowExtendDeleteButton="true"
+       ShowLoadingInFirstRender="true"
+       ShowSkeleton="true"
+       AddModalTitle="🙄 添加指令组"
+       EditModalTitle="🤩 编辑指令组"
+       ShowEmpty="true"
+       AllowDragColumn="true"
+       IsMultipleSelect="true"
+       OnQueryAsync="OnQueryAsync">
+    <TableColumns>
+        <TableColumn @bind-Field="@context.Name" Width="100" />
+        @if (context.ServerInfo != null)
+        {
+            <TableColumn @bind-Field="@(context.ServerInfo.ServerName)" Width="100" />
+        }
+        <TableColumn @bind-Field="@context.CreateTime" Width="100" />
+    </TableColumns>
+
+    <EditTemplate>
+        <div class="row g-3">
+            <div class="col-sm-6">
+                <FloatingLabel DisplayText="指令组名称" @bind-Value="@context.Name" TValue="string" IsSelectAllTextOnFocus="true" />
+            </div>
+            <div class="col-sm-6">
+                <Select IsVirtualize="true"
+                        ShowLabel="true"
+                @bind-Value="@context.ServerId"
+                        DisplayText="Minecraft服务器"
+                        OnQueryAsync="ServerDrawDropOnQueryAsync"
+                        ShowSearch="true"></Select>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-sm-12">
+                <Table class="table-users" TItem="CommandGroupEntity"
+                @bind-SelectedRows="SelectedItems"
+                       Height="600"
+                       IsPagination="true"
+                       PageItemsSource="@PageItemsSource"
+                       OnSaveAsync="OnSaveAsync"
+                       RenderMode="TableRenderMode.Table"
+                       IsFixedHeader="true"
+                       IsStriped="true"
+                       IsBordered="true"
+                       ShowToolbar="true"
+                       ShowDefaultButtons="true"
+                       ShowDeleteButton="true"
+                       ShowPageInfo="true"
+                       ShowAddButton="true"
+                       ShowSearchButton="true"
+                       ShowExtendButtons="true"
+                       ShowExtendEditButton="true"
+                       ShowExtendDeleteButton="true"
+                       ShowLoadingInFirstRender="true"
+                       ShowSkeleton="true"
+                       AddModalTitle="🙄 添加指令组"
+                       EditModalTitle="🤩 编辑指令组"
+                       ShowEmpty="true"
+                       AllowDragColumn="true"
+                       IsMultipleSelect="true"
+                       OnQueryAsync="OnQueryAsync" />
+            </div>
+        </div>
+    </EditTemplate>
+
+</Table>

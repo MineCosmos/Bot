@@ -23,8 +23,8 @@ namespace MineCosmos.Bot.Entity
         /// <summary>
         /// 服务器名
         /// </summary>
-        [DisplayName("服务器名称"),Required(ErrorMessage ="服务器名不可为空")]
-        public string ServerName { get; set; }
+        [DisplayName("服务器名称"), Required(ErrorMessage = "服务器名不可为空")]
+        public string ServerName { get; set; } = "无";
         /// <summary>
         /// 服务器IP
         /// </summary>

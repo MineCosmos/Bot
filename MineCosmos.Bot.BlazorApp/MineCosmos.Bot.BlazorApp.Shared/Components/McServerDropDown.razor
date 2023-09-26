@@ -1,0 +1,53 @@
+﻿@using BootstrapBlazor.Components;
+@using MineCosmos.Bot.BlazorApp.Shared.Base;
+@using MineCosmos.Bot.Entity;
+@using System.Diagnostics.CodeAnalysis;
+@using MineCosmos.Bot.Service.Bot;
+
+<span>@McServerId</span>
+
+<Select 
+        IsVirtualize="true"
+        ShowLabel = "true"
+        @bind-Value="@McServerId"
+        DisplayText="Minecraft服务器"
+        OnQueryAsync="OnQueryAsync"        
+        OnSelectedItemChanged="OnSelectedItemChanged"
+        ShowSearch="true"></Select>
+
+@code {
+
+    [Inject]
+    [NotNull]
+    public IServerManagerService?  serverManagerService { get; set; }
+
+    [Parameter]
+    public EventCallback<int> OnSelectItemChanged { get; set; }
+
+    [NotNull]
+    [Parameter]
+    public int McServerId { get; set; }
+
+    private async Task<QueryData<SelectedItem>> OnQueryAsync(VirtualizeQueryOption option)
+    {
+        var lst = await serverManagerService.GetListServer(option.SearchText??"");
+        return new QueryData<SelectedItem>
+            {
+                Items = lst
+                .Skip(option.StartIndex).Take(option.Count)
+                .Select(i => new SelectedItem(i.Id.ToString(), i.ServerName)),
+                TotalCount = lst.Count
+            };
+    }
+
+    private async Task OnSelectedItemChanged(SelectedItem selectedItem)
+    {
+        if (OnSelectItemChanged.HasDelegate)
+        {
+            int.TryParse(selectedItem.Value, out int selectServerId);
+            await OnSelectItemChanged.InvokeAsync(selectServerId);
+        }
+    }
+
+
+}

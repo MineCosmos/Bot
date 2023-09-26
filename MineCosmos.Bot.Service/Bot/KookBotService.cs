@@ -14,20 +14,24 @@ using Serilog;
 using Serilog.Events;
 
 namespace MineCosmos.Bot.Service;
-public class ServiceCentern : BaseService, IServiceCentern
+
+public class KookBotService : BaseService, IBotService
 {
 
     public ICommonService? _commonService;
     public IServerManagerService? _serverManagerService;
     public static KookSocketClient _client;
-    public ServiceCentern(IServerManagerService serverManagerService, ICommonService commonService)
+    public KookBotService(IServerManagerService serverManagerService, ICommonService commonService)
     {
         _serverManagerService = serverManagerService;
         _commonService = commonService;
     }
 
-
-    public async Task StartKookNet()
+    /// <summary>
+    /// 机器人启动  TODO待修改
+    /// </summary>
+    /// <returns></returns>
+    public async Task StartBot(string msg)
     {
         try
         {
@@ -93,20 +97,17 @@ public class ServiceCentern : BaseService, IServiceCentern
             };
             _client.Log += LogAsync;
             await _client.StartAsync();
-
-
-
-
-
         }
         catch (Exception ex)
         {
             ex.Message.PrintError();
             await _client.StopAsync();
             _client.Dispose();
-            await StartKookNet();
+            await StartBot("机器人发生异常,已自动重启");
         }
     }
+
+    #region private
 
     private async Task LogAsync(LogMessage message)
     {
@@ -133,7 +134,7 @@ public class ServiceCentern : BaseService, IServiceCentern
 
 
     }
-
+    #endregion
 
     /// <summary>
     /// 收到消息事件

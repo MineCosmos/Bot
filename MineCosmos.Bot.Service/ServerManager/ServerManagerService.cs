@@ -41,8 +41,6 @@ public class ServerManagerService : BaseService, IServerManagerService
         return res > 0;
     }
 
-
-
     /// <summary>
     /// 获取服务器分页列表
     /// </summary>
@@ -50,6 +48,17 @@ public class ServerManagerService : BaseService, IServerManagerService
     /// <param name="pageSize"></param>
     /// <returns></returns>
     public async Task<ResPageDto<MinecraftServerEntity>> PageServers(ReqPageDto model) => await GetPageDataAsync<MinecraftServerEntity>(model, a => a.Id > 0);
+
+    /// <summary>
+    /// 获取服务器列表
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public async Task<List<MinecraftServerEntity>> GetListServer(string name ="")
+    {
+      var lst = await  GetListAsync<MinecraftServerEntity>(a => name == "" || a.ServerName.Contains(name));
+        return lst;
+    }
 
     #region 服务器执行RCON指令
 

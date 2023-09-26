@@ -5,10 +5,6 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-	  <Compile Remove="Kook\IKookService.cs" />
-	  <Compile Remove="Kook\KookService.cs" />
-	</ItemGroup>
-	<ItemGroup>
 	  <None Remove="CommandManager\ICommandManagerService.cs~RF4b10ef2.TMP" />
 	</ItemGroup>
 	<ItemGroup>

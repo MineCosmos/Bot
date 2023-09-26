@@ -7,13 +7,12 @@ using MineCosmos.Bot.Entity;
 
 namespace MineCosmos.Bot.Service.Bot
 {
+
+    /// <summary>
+    /// Bot服务，未来可能支持discord或者其他平台
+    /// </summary>
     public interface IBotService: IBaseService
     {
-        Task<PlayerInfoEntity> CreateNewPlayer(PlayerInfoEntity entity);
-        Task<CommandModel> GetCommandFromMessage(string msgText);
-        Task<PlayerInfoEntity> GetPlayerInfoByPlatformId(string platformId);
-        Task<PlayerInfoEntity> GetPlayerInfoByPlatformName(string platformName);
-        Task<Stream?> SingInByPlayerId(int playerId);
-        Task<Stream?> SpeechRecordByPlayerId(string platformId, string platformName, string message);
+        Task StartBot(string msg = "");
     }
 }
