@@ -16,14 +16,39 @@ namespace MineCosmos.Bot.BlazorApp.Shared.Pages
     /// </summary>
     public partial class Users : BotComponentBase<PlayerInfoEntity>
     {
-        [Inject]
-        [NotNull]
-        private IPlayerService playerService { get; set; }
+        
 
         [Inject]
         [NotNull]
-        private IServerManagerService serverManagerService { get; set; }
+        private IPlayerService? playerService { get; set; }
 
+        [Inject]
+        [NotNull]
+        private IServerManagerService? serverManagerService { get; set; }
+
+
+        private SelectedItem? ServerDropDownSelectItem { get; set; } = new();
+        private List<UploadFile> PreviewFileList { get; set; }
+
+        /// <summary>
+        /// 点击编辑按钮时
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        private async Task OnEditAsync(PlayerInfoEntity model)
+        {
+            //图片手动赋值
+            if (!string.IsNullOrWhiteSpace(model.Avatar))
+            {
+                PreviewFileList = new() { new UploadFile { PrevUrl = model.Avatar } };
+                CurrentImageUrl = model.Avatar;
+            }
+
+            //下拉框手动赋值
+            if (model.ServerInfo is null) return;
+            ServerDropDownSelectItem.Text = model.ServerInfo.ServerName;
+            ServerDropDownSelectItem.Value = model.ServerId.ToString();
+        }
 
         private async Task<QueryData<PlayerInfoEntity>> OnQueryAsync(QueryPageOptions options)
         {

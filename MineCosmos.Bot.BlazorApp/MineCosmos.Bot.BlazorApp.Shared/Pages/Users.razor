@@ -35,6 +35,7 @@
        ShowEmpty="true"
        AllowDragColumn="true"
        IsMultipleSelect="true"
+       OnEditAsync="OnEditAsync"
        OnQueryAsync="OnQueryAsync">
 
     <TableColumns>
@@ -68,7 +69,14 @@
                 <FloatingLabel DisplayText="UUID" @bind-Value="@context.Uuid" TValue="string" IsSelectAllTextOnFocus="true" />
             </div>
             <div class="col-6">
-                <AvatarUpload @bind-Value="@context.Avatar" TValue="string" Accept="image/*" IsSingle="true" ShowProgress="true" IsCircle="true" OnChange="@SaveToFile"
+                <span> @context.Avatar</span>
+                <AvatarUpload @bind-Value="@context.Avatar"                 
+                TValue="string" Accept="image/*" 
+                IsSingle="true" 
+                ShowProgress="true" 
+                IsCircle="true" 
+                OnChange="@SaveToFile"
+                              DefaultFileList="PreviewFileList"
                               OnDelete="@(fileName => Task.FromResult(true))"></AvatarUpload>
             </div>
             <div class="col-sm-6">
@@ -78,10 +86,10 @@
             <div class="col-sm-12">
                 <Select IsVirtualize="true"
                         ShowLabel="true"
-                        @bind-Value="@context.ServerId"
+                        @bind-Value="ServerDropDownSelectItem"
                         DisplayText="Minecraft服务器"
                         OnQueryAsync="ServerDrawDropOnQueryAsync"
-                        ShowSearch="true"></Select>
+                       ></Select>
             </div>
 
             <div class="col-sm-6">

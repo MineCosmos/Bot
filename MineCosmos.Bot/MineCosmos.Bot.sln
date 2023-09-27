@@ -22,11 +22,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "..\ConsoleAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnet5Test", "..\dotnet5Test\dotnet5Test.csproj", "{6331B959-3D06-4C51-A493-1CC029F54C1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineCosmos.Bot.BlazorApp.Server", "..\MineCosmos.Bot.BlazorApp\MineCosmos.Bot.BlazorApp.Server\MineCosmos.Bot.BlazorApp.Server.csproj", "{D3BF6841-827B-406D-819A-92729DE7CE21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MineCosmos.Bot.BlazorApp.Server", "..\MineCosmos.Bot.BlazorApp\MineCosmos.Bot.BlazorApp.Server\MineCosmos.Bot.BlazorApp.Server.csproj", "{D3BF6841-827B-406D-819A-92729DE7CE21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineCosmos.Bot.BlazorApp.Shared", "..\MineCosmos.Bot.BlazorApp\MineCosmos.Bot.BlazorApp.Shared\MineCosmos.Bot.BlazorApp.Shared.csproj", "{C3F4461F-5AD7-4DF8-B7E1-1C08BD94B43E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MineCosmos.Bot.BlazorApp.Shared", "..\MineCosmos.Bot.BlazorApp\MineCosmos.Bot.BlazorApp.Shared\MineCosmos.Bot.BlazorApp.Shared.csproj", "{C3F4461F-5AD7-4DF8-B7E1-1C08BD94B43E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineCosmos.Bot.Extensions", "..\MineCosmos.Bot.Extensions\MineCosmos.Bot.Extensions.csproj", "{4ED64FEE-8ECE-4F0F-8D0B-1FDD0EE6CF98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MineCosmos.Bot.Extensions", "..\MineCosmos.Bot.Extensions\MineCosmos.Bot.Extensions.csproj", "{4ED64FEE-8ECE-4F0F-8D0B-1FDD0EE6CF98}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{9F18884E-9A4F-419F-9AA7-9CE5CCF5DB23}"
 EndProject
