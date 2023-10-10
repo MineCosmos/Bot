@@ -1,4 +1,5 @@
 ﻿using BootstrapBlazor.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 
 namespace MineCosmos.Bot.BlazorApp.Shared.Shared
@@ -23,6 +24,8 @@ namespace MineCosmos.Bot.BlazorApp.Shared.Shared
         private bool ShowFooter { get; set; } = false;
 
         private List<MenuItem>? Menus { get; set; }
+
+        [Inject] private NavigationManager Navigation { get; set; }
 
         /// <summary>
         /// OnInitialized 方法

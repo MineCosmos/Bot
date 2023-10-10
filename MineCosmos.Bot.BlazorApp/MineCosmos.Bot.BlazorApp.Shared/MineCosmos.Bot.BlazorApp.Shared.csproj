@@ -16,6 +16,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Pages\Login.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Pages\Login.razor.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BootstrapBlazor" Version="7.*" />
     <PackageReference Include="BootstrapBlazor.Chart" Version="7.6.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.7.0" />

@@ -1,11 +1,23 @@
-﻿@inherits BootstrapModuleComponentBase
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims;
+@inherits BootstrapModuleComponentBase
 @attribute [JSModuleAutoLoader("./_content/MineCosmos.Bot.BlazorApp.Shared/App.razor.js", JSObjectReference = true, AutoInvokeDispose = false)]
 
 <BootstrapBlazorRoot>
     <Router AppAssembly="@typeof(MainLayout).Assembly">
         <Found Context="routeData">
-            <PageTitle>Bootstrap Blazor Project Template</PageTitle>
-            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+
+
+             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="typeof(MainLayout)">               
+                <NotAuthorized>
+                    <!-- 跳转到登录页面 RedirectToLogin -->
+                    <a href="/login">去登录</a>
+                </NotAuthorized>
+                <Authorizing>
+                    <PageTitle>Bootstrap Blazor Project Template</PageTitle>
+                    <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+                </Authorizing>              
+            </AuthorizeRouteView>
         </Found>
         <NotFound>
             <PageTitle>Not found</PageTitle>
@@ -15,3 +27,35 @@
         </NotFound>
     </Router>
 </BootstrapBlazorRoot>
+
+@code {
+    @inject AuthenticationStateProvider AuthenticationStateProvider
+    @inject NavigationManager Navigation
+    @inject IJwtService IJwtService
+
+    protected override void OnInitialized()
+    {
+     
+
+
+        //var token = IJwtService!.GenerateToken("a", "b");
+        //var st = IJwtService.GetPrincipalFromToken(token);
+        //var tUId = st.FindFirstValue("userId");
+
+        //var authStateProvider = (JwtAuthenticationStateProvider)AuthenticationStateProvider;        
+        //authStateProvider.MarkUserAsAuthenticated(token);
+
+
+    }
+
+    private async Task SignOut()
+    {
+        // 在点击 Sign Out 按钮时执行注销操作并跳转到登录页面
+      var authState =  await AuthenticationStateProvider.GetAuthenticationStateAsync();
+      var tU =  authState.User;
+       Navigation.NavigateTo("login");
+    }
+
+
+
+}

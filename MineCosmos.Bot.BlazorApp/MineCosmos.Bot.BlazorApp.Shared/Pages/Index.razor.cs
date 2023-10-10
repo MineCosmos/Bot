@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BootstrapBlazor.Components;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 
 namespace MineCosmos.Bot.BlazorApp.Shared.Pages
 {
+    [Authorize]
     public partial class Index
     {
         [NotNull]

@@ -1,0 +1,97 @@
+﻿@page "/login"
+
+@using Microsoft.AspNetCore.Components.Authorization;
+@using System.Diagnostics.CodeAnalysis;
+
+
+<style>
+
+    ﻿.login-item-avatar h4 {
+        margin: 1rem 0 3rem 0;
+    }
+
+    .login-item-avatar .avatar {
+        margin-top: 3rem;
+    }
+
+    .login-item-avatar .d-flex {
+        justify-content: space-between;
+    }
+
+    .loginBtn {
+            margin-bottom: 1rem;
+            max-width: 46%;
+        }
+
+    .form-control {
+        --bb-form-control-padding: var(--login-padding-y) var(--login-padding-x);
+        font-size: .875rem;
+        margin-bottom: 1rem;
+    }
+
+</style>
+
+<div class="login-item login-item-avatar">
+    <div class="text-center">
+        <Avatar Url="./images/Argo-C.png" IsCircle="true" Size="Size.ExtraExtraLarge" />
+        <h4 class="text-dark">欢迎使用 MineCosmos.Bot 控制面板</h4>
+    </div>
+    <ValidateForm Model="@Model">
+        <BootstrapInput TValue="string" ShowLabel="false" PlaceHolder="请输入账号" />
+        <BootstrapPassword ShowLabel="false" PlaceHolder="请输入密码" />
+        <Checkbox TValue="bool" ShowLabel="false" ShowAfterLabel="true" DisplayText="记住登录状态" />
+        <Button class="loginBtn" Text="登录" Color="Color.Primary" OnClick="CheckLogin"></Button>
+        <hr />
+        <div class="d-flex">
+            <Button Text="忘记密码" OnClick="Forget" Color="Color.Danger"></Button>
+            <Button Text="用户注册" OnClick="Register" Color="Color.Info"></Button>
+        </div>
+    </ValidateForm>
+</div>
+
+@code {
+    @inject AuthenticationStateProvider AuthenticationStateProvider
+    @inject NavigationManager Navigation
+    @inject SwalService SwalService
+    @inject IJwtService IJwtService
+
+    [CascadingParameter]
+    [NotNull]
+    private LoginModel? Model { get; set; } = new() { Name = "", Pwd = "" };
+
+    public class LoginModel
+    {
+        public string Name { get; set; }
+
+        public string Pwd { get; set; }
+    }
+
+    private void Register()
+    {
+        OnSwal(SwalCategory.Question, "今日非良辰吉日，无法注册");
+    }
+
+    private void Forget()
+    {
+        OnSwal(SwalCategory.Question, "忘了就忘了，算了吧");
+    }
+
+    private Task OnSwal(SwalCategory cate, string title) => SwalService.Show(new SwalOption()
+        {
+            Category = cate,
+            Title = title
+        });
+
+    private void CheckLogin()
+    {
+        var token = IJwtService!.GenerateToken(Model.Name, Model.Pwd);
+        //var st = IJwtService.GetPrincipalFromToken(token);
+        //var tUId = st.FindFirstValue("userId");
+        var authStateProvider = (JwtAuthenticationStateProvider)AuthenticationStateProvider;
+        authStateProvider.MarkUserAsAuthenticated(token);
+
+        Navigation.ToAbsoluteUri($"{Navigation.BaseUri}");
+    }
+}
+
+
